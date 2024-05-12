@@ -1,0 +1,13 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "dist/lib/javafx.base.jar",
+        "dist/lib/javafx.controls.jar",
+        "dist/lib/javafx.fxml.jar",
+        "dist/lib/javafx.graphics.jar",
+        "dist/lib/javafx.media.jar",
+        "dist/lib/javafx.swing.jar",
+        "dist/lib/javafx.web.jar",
+        "dist/lib/javafx-swt.jar"
+    ]
+}
