@@ -17,7 +17,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #088f8f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <AnchorPane prefHeight="67.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
@@ -27,9 +26,12 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Button alignment="CENTER" layoutX="610.0" layoutY="20.0" mnemonicParsing="false" AnchorPane.rightAnchor="35.0">
+            <Button alignment="CENTER" layoutX="545.0" layoutY="10.0" mnemonicParsing="false" AnchorPane.rightAnchor="14.0">
                <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="75.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/logout.png" />
+                     </image></ImageView>
                </graphic>
             </Button>
          </children>
@@ -45,14 +47,13 @@
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="MyPhoto" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../IP-main/src/GreenBallApp/image/addphoto3.png" />
-                           </image>
-                        </ImageView>
                         <Button id="imagebutton" fx:id="image" mnemonicParsing="false" onAction="#imagenOnAction" prefHeight="172.0" prefWidth="201.0" style="-fx-background-radius: 100; -fx-background-color: null;">
                            <graphic>
-                              <ImageView fx:id="changePhoto" fitHeight="150.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="changePhoto" fitHeight="150.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../image/addphoto3.png" />
+                                 </image>
+                              </ImageView>
                            </graphic>
                         </Button>
                      </children>
@@ -99,12 +100,37 @@
       <GridPane prefHeight="200.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" GridPane.halignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/expenses.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <GridPane.margin>
+                  <Insets bottom="30.0" left="50.0" />
+               </GridPane.margin>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/account.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <GridPane.margin>
+                  <Insets bottom="30.0" right="50.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
       </GridPane>
    </bottom>
 </BorderPane>

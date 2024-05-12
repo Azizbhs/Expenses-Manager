@@ -1,16 +1,33 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package Controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
-
+/**
+ * FXML Controller class
+ *
+ * @author leoda
+ */
 public class LogIn2Controller implements Initializable {
+
+    @FXML
+    private TextField userName;
+    @FXML
+    private PasswordField password;
+    @FXML
+    private Button logIn;
+    @FXML
+    private Button signUp;
 
     /**
      * Initializes the controller class.
@@ -19,5 +36,13 @@ public class LogIn2Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void logIn(ActionEvent event) {
+    }
+
+    @FXML
+    private void signUp(ActionEvent event) {
+    }
     
 }
