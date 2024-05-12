@@ -1,13 +1,15 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "dist/lib/javafx.base.jar",
-        "dist/lib/javafx.controls.jar",
-        "dist/lib/javafx.fxml.jar",
-        "dist/lib/javafx.graphics.jar",
-        "dist/lib/javafx.media.jar",
-        "dist/lib/javafx.swing.jar",
-        "dist/lib/javafx.web.jar",
-        "dist/lib/javafx-swt.jar"
+        "c:\\Users\\leoda\\OneDrive - UPV\\UPV\\SEGUNDO AÑO\\SEGUNDO CUATRIMESTRE\\IPC\\Trabajo\\Ipc-project-main\\dist\\lib\\acountIPC.jar",
+        "c:\\Users\\leoda\\OneDrive - UPV\\UPV\\SEGUNDO AÑO\\SEGUNDO CUATRIMESTRE\\IPC\\Trabajo\\Ipc-project-main\\dist\\lib\\javafx.base.jar",
+        "c:\\Users\\leoda\\OneDrive - UPV\\UPV\\SEGUNDO AÑO\\SEGUNDO CUATRIMESTRE\\IPC\\Trabajo\\Ipc-project-main\\dist\\lib\\javafx.controls.jar",
+        "c:\\Users\\leoda\\OneDrive - UPV\\UPV\\SEGUNDO AÑO\\SEGUNDO CUATRIMESTRE\\IPC\\Trabajo\\Ipc-project-main\\dist\\lib\\javafx.fxml.jar",
+        "c:\\Users\\leoda\\OneDrive - UPV\\UPV\\SEGUNDO AÑO\\SEGUNDO CUATRIMESTRE\\IPC\\Trabajo\\Ipc-project-main\\dist\\lib\\javafx.graphics.jar",
+        "c:\\Users\\leoda\\OneDrive - UPV\\UPV\\SEGUNDO AÑO\\SEGUNDO CUATRIMESTRE\\IPC\\Trabajo\\Ipc-project-main\\dist\\lib\\javafx.media.jar",
+        "c:\\Users\\leoda\\OneDrive - UPV\\UPV\\SEGUNDO AÑO\\SEGUNDO CUATRIMESTRE\\IPC\\Trabajo\\Ipc-project-main\\dist\\lib\\javafx.swing.jar",
+        "c:\\Users\\leoda\\OneDrive - UPV\\UPV\\SEGUNDO AÑO\\SEGUNDO CUATRIMESTRE\\IPC\\Trabajo\\Ipc-project-main\\dist\\lib\\javafx.web.jar",
+        "c:\\Users\\leoda\\OneDrive - UPV\\UPV\\SEGUNDO AÑO\\SEGUNDO CUATRIMESTRE\\IPC\\Trabajo\\Ipc-project-main\\dist\\lib\\javafx-swt.jar",
+        "c:\\Users\\leoda\\OneDrive - UPV\\UPV\\SEGUNDO AÑO\\SEGUNDO CUATRIMESTRE\\IPC\\Trabajo\\Ipc-project-main\\dist\\lib\\sqlite-jdbc-3.41.2.1.jar"
     ]
 }
