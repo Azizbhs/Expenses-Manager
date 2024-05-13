@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LogIn2Controller">
    <left>
       <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #088F8F;" BorderPane.alignment="CENTER">
          <children>
@@ -41,17 +41,17 @@
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="500.0" prefWidth="382.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="500.0" prefWidth="382.0" stylesheets="@styleSheet.css" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="101.0" layoutY="166.0" promptText="User Name" style="-fx-background-color: transparent; -fx-border-color: #088F8F; -fx-border-width: 0 0 1px 0;" />
-            <PasswordField layoutX="101.0" layoutY="214.0" promptText="Paasword" style="-fx-background-color: transparent; -fx-border-color: #088F8F; -fx-border-width: 0 0 1 0;" />
-            <Button layoutX="119.0" layoutY="268.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" text="Login" />
+            <TextField fx:id="userName" layoutX="101.0" layoutY="166.0" promptText="User Name" style="-fx-background-color: transparent; -fx-border-color: #088F8F; -fx-border-width: 0 0 1px 0;" />
+            <PasswordField fx:id="password" layoutX="101.0" layoutY="214.0" promptText="Paasword" style="-fx-background-color: transparent; -fx-border-color: #088F8F; -fx-border-width: 0 0 1 0;" />
+            <Button fx:id="logIn" layoutX="119.0" layoutY="268.0" mnemonicParsing="false" onAction="#logIn" prefHeight="26.0" prefWidth="112.0" styleClass="btn" stylesheets="@styleSheet.css" text="Login" textFill="WHITE" />
             <Text fill="#088f8f" layoutX="121.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not registered?" textAlignment="CENTER" wrappingWidth="107.40003204345703">
                <font>
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
             </Text>
-            <Button layoutX="118.0" layoutY="423.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" text="Sign up" />
+            <Button fx:id="signUp" layoutX="118.0" layoutY="423.0" mnemonicParsing="false" onAction="#signUp" prefHeight="26.0" prefWidth="112.0" styleClass="btn" text="Sign up" textFill="WHITE" />
             
             <Text fill="#088f8f" layoutX="107.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login Form" textAlignment="CENTER" wrappingWidth="128.59333038330078">
                <font>
