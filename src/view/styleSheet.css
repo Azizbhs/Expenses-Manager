@@ -6,3 +6,9 @@
     -fx-background-color: #087070;
 }
 
+.signupBor{
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color:  #088F8F;
+    -fx-background-color: transparent;
+}
+
