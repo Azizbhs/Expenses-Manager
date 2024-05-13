@@ -38,6 +38,10 @@ public class LogIn2Controller implements Initializable {
     }    
 
     @FXML
+    private void a(ActionEvent event) {
+    }
+
+    @FXML
     private void logIn(ActionEvent event) {
     }
 
