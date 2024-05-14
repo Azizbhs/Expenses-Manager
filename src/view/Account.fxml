@@ -25,7 +25,7 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Button fx:id="home" alignment="CENTER" layoutX="570.0" layoutY="7.0" mnemonicParsing="false" onAction="#home" AnchorPane.bottomAnchor="7.0">
+            <Button fx:id="home" alignment="CENTER" layoutX="570.0" layoutY="12.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #088f8f;" AnchorPane.bottomAnchor="12.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>

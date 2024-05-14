@@ -23,14 +23,6 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Button fx:id="home" alignment="CENTER" layoutX="570.0" layoutY="7.0" mnemonicParsing="false" onAction="#home" AnchorPane.rightAnchor="14.0">
-               <graphic>
-                  <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../image/home_icon.png" />
-                     </image></ImageView>
-               </graphic>
-            </Button>
          </children>
       </AnchorPane>
    </top>
@@ -41,7 +33,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="219.0" prefWidth="700.0">
                      <children>
-                        <VBox prefHeight="219.0" prefWidth="351.0">
+                        <VBox prefHeight="219.0" prefWidth="258.0">
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
                                  <VBox.margin>
@@ -86,7 +78,7 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <HBox.margin>
-                              <Insets left="115.0" />
+                              <Insets left="160.0" />
                            </HBox.margin>
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile picture">
@@ -117,36 +109,58 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #088f8f;">
                <children>
-                  <VBox prefHeight="213.0" prefWidth="350.0">
+                  <HBox prefHeight="183.0" prefWidth="264.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <PasswordField fx:id="password">
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </PasswordField>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat password:">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <PasswordField fx:id="repeatPassword">
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </PasswordField>
+                        <VBox prefHeight="183.0" prefWidth="260.0">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <PasswordField fx:id="password">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </PasswordField>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat password:">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <PasswordField fx:id="repeatPassword">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </PasswordField>
+                           </children>
+                        </VBox>
                      </children>
-                  </VBox>
+                  </HBox>
+                  <Button layoutX="568.0" layoutY="120.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;">
+                     <graphic>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../image/save.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="434.0" layoutY="120.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;">
+                     <graphic>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../image/cancel.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
         </items>
