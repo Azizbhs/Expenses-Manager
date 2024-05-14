@@ -20,7 +20,7 @@ public class Project2 extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/Main.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/LogIn.fxml"));
         Parent root = loader.load();
         
         Scene scene = new Scene(root);

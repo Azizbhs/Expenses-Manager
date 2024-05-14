@@ -43,7 +43,7 @@
    <right>
       <AnchorPane prefHeight="500.0" prefWidth="382.0" stylesheets="@styleSheet.css" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="userName" layoutX="101.0" layoutY="166.0" onAction="#a" promptText="User Name" style="-fx-background-color: transparent; -fx-border-color: #088F8F; -fx-border-width: 0 0 1px 0;" />
+            <TextField fx:id="userName" layoutX="101.0" layoutY="166.0" promptText="User Name" style="-fx-background-color: transparent; -fx-border-color: #088F8F; -fx-border-width: 0 0 1px 0;" />
             <PasswordField fx:id="password" layoutX="101.0" layoutY="214.0" promptText="Paasword" style="-fx-background-color: transparent; -fx-border-color: #088F8F; -fx-border-width: 0 0 1 0;" />
             <Button fx:id="logIn" layoutX="119.0" layoutY="268.0" mnemonicParsing="false" onAction="#logIn" prefHeight="26.0" prefWidth="112.0" styleClass="btn" stylesheets="@styleSheet.css" text="Login" textFill="WHITE" />
             <Text fill="#088f8f" layoutX="121.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not registered?" textAlignment="CENTER" wrappingWidth="107.40003204345703">
