@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #088f8f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ExpensesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #088f8f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ExpensesController">
    <top>
       <AnchorPane prefHeight="67.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -21,11 +21,11 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Button fx:id="home" alignment="CENTER" layoutX="570.0" layoutY="7.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #088f8f;" AnchorPane.rightAnchor="14.0">
+            <Button fx:id="home" alignment="CENTER" layoutX="570.0" layoutY="12.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #088f8f;" AnchorPane.rightAnchor="14.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../image/home_icon.png" />
+                        <Image url="@../image/home_icon.png" />
                      </image></ImageView>
                </graphic>
             </Button>
@@ -35,11 +35,11 @@
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="433.0" prefWidth="183.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="add_expense" mnemonicParsing="false" onAction="#add_expense">
+            <Button fx:id="add_expense" mnemonicParsing="false" onAction="#add_expense" style="-fx-background-color: #ffffff;">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../image/add.png" />
+                        <Image url="@../image/add.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -47,11 +47,11 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="remove_expense" mnemonicParsing="false" onAction="#remove_expense">
+            <Button fx:id="remove_expense" mnemonicParsing="false" onAction="#remove_expense" style="-fx-background-color: #ffffff;">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../image/remove.png" />
+                        <Image url="@../image/remove.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -59,11 +59,11 @@
                   <Insets top="50.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="edit_category" mnemonicParsing="false" onAction="#edit_category">
+            <Button fx:id="edit_category" mnemonicParsing="false" onAction="#edit_category" style="-fx-background-color: #ffffff;">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../image/modify.png" />
+                        <Image url="@../image/modify.png" />
                      </image>
                   </ImageView>
                </graphic>

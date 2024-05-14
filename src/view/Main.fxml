@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #088f8f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #088f8f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
    <top>
       <AnchorPane prefHeight="67.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -26,11 +26,11 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Button alignment="CENTER" layoutX="545.0" layoutY="8.0" mnemonicParsing="false" style="-fx-background-color: #088f8f;" AnchorPane.rightAnchor="14.0">
+            <Button fx:id="logOut" alignment="CENTER" layoutX="570.0" layoutY="12.0" mnemonicParsing="false" onAction="#logOut" prefWidth="92.0" style="-fx-background-color: #088f8f;" AnchorPane.rightAnchor="14.0">
                <graphic>
-                  <ImageView fitHeight="75.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../image/logout.png" />
+                        <Image url="@../image/logout.png" />
                      </image></ImageView>
                </graphic>
             </Button>
@@ -51,7 +51,7 @@
                            <graphic>
                               <ImageView fx:id="changePhoto" fitHeight="150.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../image/add_photo.png" />
+                                    <Image url="@../image/add_photo.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -110,11 +110,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #ffffff;" GridPane.halignment="CENTER">
+            <Button fx:id="expenses" alignment="CENTER" mnemonicParsing="false" onAction="#expenses" style="-fx-background-color: #ffffff;" GridPane.halignment="CENTER">
                <graphic>
                   <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../image/expenses.png" />
+                        <Image url="@../image/expenses.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -122,11 +122,11 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #ffffff;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+            <Button fx:id="account" alignment="CENTER" mnemonicParsing="false" onAction="#account" style="-fx-background-color: #ffffff;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                <graphic>
                   <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../image/account.png" />
+                        <Image url="@../image/account.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -134,11 +134,11 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <Button fx:id="categories" alignment="CENTER" mnemonicParsing="false" onAction="#categories" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <graphic>
                   <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../image/categories.png" />
+                        <Image url="@../image/categories.png" />
                      </image>
                   </ImageView>
                </graphic>

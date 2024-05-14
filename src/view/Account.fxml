@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #088f8f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AccountController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #088f8f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AccountController">
    <top>
       <AnchorPane prefHeight="67.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -29,7 +29,7 @@
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../image/home_icon.png" />
+                        <Image url="@../image/home_icon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -44,12 +44,14 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.0" minWidth="10.0" percentWidth="50.0" prefWidth="302.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="385.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="391.0" minHeight="0.0" prefHeight="48.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="433.0" minHeight="0.0" prefHeight="49.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="433.0" minHeight="0.0" prefHeight="384.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <PieChart fx:id="pieChart" GridPane.columnIndex="1" />
-            <BarChart fx:id="barChart" prefHeight="420.0" prefWidth="431.0">
+            <ComboBox fx:id="monthSelect" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <ComboBox fx:id="yearSelect" prefWidth="150.0" GridPane.halignment="CENTER" />
+            <PieChart fx:id="pieChart" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <BarChart fx:id="barChart" prefHeight="420.0" prefWidth="431.0" GridPane.rowIndex="1">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -57,8 +59,6 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
-            <ComboBox fx:id="yearSelect" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <ComboBox fx:id="monthSelect" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>

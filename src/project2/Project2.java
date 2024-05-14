@@ -15,11 +15,12 @@ import javafx.stage.Stage;
  * @author GOATS
  */
 public class Project2 extends Application{
-
+    public static Stage stage;
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/LogIn2.fxml"));
+        this.stage = stage;
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/Main.fxml"));
         Parent root = loader.load();
         
         Scene scene = new Scene(root);
@@ -36,4 +37,14 @@ public class Project2 extends Application{
         launch(args);
     }
     
+    public static Stage getStage(){
+        return stage;
+    }
+    
+    public static void setRoot(Parent root){
+
+        stage.getScene().setRoot(root);
+        stage.show();
+
+    }
 }

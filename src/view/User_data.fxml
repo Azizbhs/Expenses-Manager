@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #088f8f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #088f8f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User_dataController">
    <top>
       <AnchorPane prefHeight="67.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -27,7 +27,7 @@
       </AnchorPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.5777262180974478" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+      <SplitPane fx:id="splitPane" dividerPositions="0.5777262180974478" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #088f8f;">
                <children>
@@ -91,9 +91,9 @@
                               </Text>
                               <Button fx:id="image" mnemonicParsing="false" onAction="#add_image" style="-fx-background-color: #ffffff;" textFill="#d70000">
                                  <graphic>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="profileImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../image/add_photo.png" />
+                                          <Image url="@../image/add_photo.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -147,7 +147,7 @@
                      <graphic>
                         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../image/save.png" />
+                              <Image url="@../image/save.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -156,7 +156,7 @@
                      <graphic>
                         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../image/cancel.png" />
+                              <Image url="@../image/cancel.png" />
                            </image>
                         </ImageView>
                      </graphic>
