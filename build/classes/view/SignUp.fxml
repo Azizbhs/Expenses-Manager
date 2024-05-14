@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" stylesheets="@styleSheet.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" stylesheets="@styleSheet.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignUpController">
    <children>
       <Text fill="#088f8f" layoutX="98.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration Form">
          <font>
@@ -20,24 +19,36 @@
             <Font name="System Italic" size="14.0" />
          </font>
       </Text>
-      <TextField layoutX="126.0" layoutY="209.0" promptText="Enter you user name" styleClass="signupBor" stylesheets="@styleSheet.css" />
-      <PasswordField layoutX="126.0" layoutY="287.0" promptText="Enter your password" styleClass="signupBor" />
-      <PasswordField layoutX="126.0" layoutY="374.0" promptText="Confirm password" styleClass="signupBor" />
-      <Text fill="#088f8f" layoutX="126.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name:">
+      <TextField fx:id="userNameField" layoutX="125.0" layoutY="313.0" promptText="Enter you user name" styleClass="signupBor" stylesheets="@styleSheet.css" />
+      <PasswordField fx:id="passwordField2" layoutX="124.0" layoutY="378.0" promptText="Enter your password" styleClass="signupBor" />
+      <PasswordField fx:id="repeatPassword" layoutX="126.0" layoutY="445.0" promptText="Confirm password" styleClass="signupBor" />
+      <Text fill="#088f8f" layoutX="126.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name:">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </Text>
-      <Text fill="#088f8f" layoutX="126.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+      <Text fill="#088f8f" layoutX="124.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </Text>
-      <Text fill="#088f8f" layoutX="126.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat Password:">
+      <Text fill="#088f8f" layoutX="124.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat Password:">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </Text>
-      <Button layoutX="145.0" layoutY="477.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" styleClass="btn" text="Sign Up" textFill="WHITE" />
+      <Button fx:id="signUpButton" layoutX="143.0" layoutY="524.0" mnemonicParsing="false" onAction="#signUp" prefHeight="26.0" prefWidth="112.0" styleClass="btn" text="Sign Up" textFill="WHITE" />
+      <Text fill="#088f8f" layoutX="127.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Real Name: ">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="realName" layoutX="126.0" layoutY="177.0" promptText="Enter your name" styleClass="signupBor" />
+      <Text fill="#088f8f" layoutX="127.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="email" layoutX="126.0" layoutY="246.0" promptText="Enter your email" styleClass="signupBor" />
    </children>
 </AnchorPane>
