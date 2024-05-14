@@ -17,16 +17,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #088f8f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #088f8f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <AnchorPane prefHeight="67.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="#088f8f" layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home" textAlignment="CENTER" AnchorPane.leftAnchor="35.0">
+            <Text fill="#088f8f" layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expenses Manager" textAlignment="CENTER" AnchorPane.leftAnchor="35.0">
                <font>
                   <Font size="36.0" />
                </font>
             </Text>
-            <Button fx:id="logOut" alignment="CENTER" layoutX="545.0" layoutY="10.0" mnemonicParsing="false" onAction="#logOut" AnchorPane.rightAnchor="14.0">
+            <Button alignment="CENTER" layoutX="545.0" layoutY="10.0" mnemonicParsing="false" AnchorPane.rightAnchor="14.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -47,7 +47,7 @@
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <Button id="imagebutton" fx:id="image" mnemonicParsing="false" onAction="#imagen" prefHeight="172.0" prefWidth="201.0" style="-fx-background-color: #ffffff;">
+                        <Button id="imagebutton" fx:id="image" mnemonicParsing="false" onAction="#imagenOnAction" prefHeight="172.0" prefWidth="201.0" style="-fx-background-color: #ffffff;">
                            <graphic>
                               <ImageView fx:id="changePhoto" fitHeight="150.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -56,7 +56,7 @@
                               </ImageView>
                            </graphic>
                            <StackPane.margin>
-                              <Insets right="10.0" />
+                              <Insets right="20.0" />
                            </StackPane.margin>
                         </Button>
                      </children>
@@ -79,20 +79,22 @@
                               <Insets left="2.0" />
                            </VBox.margin>
                         </Label>
-                        <Hyperlink fx:id="myAccount" onAction="#myAccount" prefHeight="23.0" prefWidth="89.0" text="My profile -&gt;" textFill="WHITE">
+                        <Hyperlink fx:id="linkMyAccount" onAction="#cuentaOnAction" prefHeight="23.0" prefWidth="89.0" text="Profile" textFill="WHITE">
                            <font>
-                              <Font name="Calibri Italic" size="14.0" />
+                              <Font name="Calibri Bold" size="14.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
-                           <padding>
-                              <Insets right="1.0" />
-                           </padding>
                         </Hyperlink>
                      </children>
                   </VBox>
                </children>
+            </HBox>
+            <HBox prefHeight="246.0" prefWidth="700.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>
@@ -108,7 +110,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="expenses" alignment="CENTER" mnemonicParsing="false" onAction="#expenses" GridPane.halignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" GridPane.halignment="CENTER">
                <graphic>
                   <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -120,7 +122,7 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button fx:id="showAccount" alignment="CENTER" mnemonicParsing="false" onAction="#showAccount" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                <graphic>
                   <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -132,7 +134,7 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button fx:id="categories" alignment="CENTER" mnemonicParsing="false" onAction="#categories" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <graphic>
                   <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -140,9 +142,6 @@
                      </image>
                   </ImageView>
                </graphic>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
             </Button>
          </children>
       </GridPane>

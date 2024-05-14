@@ -26,7 +26,7 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Button alignment="CENTER" layoutX="545.0" layoutY="10.0" mnemonicParsing="false" AnchorPane.rightAnchor="14.0">
+            <Button alignment="CENTER" layoutX="545.0" layoutY="8.0" mnemonicParsing="false" style="-fx-background-color: #088f8f;" AnchorPane.rightAnchor="14.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -79,7 +79,7 @@
                               <Insets left="2.0" />
                            </VBox.margin>
                         </Label>
-                        <Hyperlink fx:id="linkMyAccount" onAction="#cuentaOnAction" prefHeight="23.0" prefWidth="89.0" text="Profile" textFill="WHITE">
+                        <Hyperlink fx:id="linkMyAccount" onAction="#cuentaOnAction" prefHeight="23.0" prefWidth="89.0" text="Profile &gt;" textFill="WHITE">
                            <font>
                               <Font name="Calibri Bold" size="14.0" />
                            </font>
@@ -110,7 +110,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" GridPane.halignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #ffffff;" GridPane.halignment="CENTER">
                <graphic>
                   <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -122,7 +122,7 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #ffffff;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                <graphic>
                   <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -134,7 +134,7 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <graphic>
                   <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                      <image>
