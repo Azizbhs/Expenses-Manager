@@ -28,7 +28,7 @@ public class Project2 extends Application{
         stage.setTitle("Expenses Manager");
         stage.show();
     }
-
+    //Hola
     /**
      * @param args the command line arguments
      */
