@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -33,6 +34,8 @@ public class LogIn2Controller implements Initializable {
     private Button logInButton;
     @FXML
     private Button signupButton;
+    @FXML
+    private Hyperlink forgotPassword;
 
     /**
      * Initializes the controller class.
@@ -63,5 +66,19 @@ public class LogIn2Controller implements Initializable {
 
     @FXML
     private void logIn(ActionEvent event) {
+    }
+
+    @FXML
+    private void forgotPassword(ActionEvent event) throws IOException{
+        Stage stage = new Stage();
+    
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Forgot_password.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.setTitle("Reset password");
+        stage.show(); 
     }
 }

@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
@@ -35,6 +36,12 @@ import project2.Project2;
 public class User_dataController implements Initializable {
 
     @FXML
+    private ImageView profileImage;
+    @FXML
+    private Button save;
+    @FXML
+    private Button cancel;
+    @FXML
     private TextField name;
     @FXML
     private TextField surname;
@@ -43,17 +50,7 @@ public class User_dataController implements Initializable {
     @FXML
     private Button image;
     @FXML
-    private PasswordField password;
-    @FXML
-    private PasswordField repeatPassword;
-    @FXML
-    private SplitPane splitPane;
-    @FXML
-    private ImageView profileImage;
-    @FXML
-    private Button save;
-    @FXML
-    private Button cancel;
+    private Hyperlink forgotPassword;
 
     /**
      * Initializes the controller class.
@@ -149,6 +146,20 @@ public class User_dataController implements Initializable {
                 }
             }
         });
+    }
+
+    @FXML
+    private void forgotPassword(ActionEvent event) throws IOException{
+        Stage stage = new Stage();
+    
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Change_password.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.setTitle("Reset password");
+        stage.show();  
     }
     
 }

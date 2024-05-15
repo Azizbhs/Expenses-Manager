@@ -30,7 +30,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" layoutY="-2.0" prefHeight="435.0" prefWidth="700.0">
                <children>
-                  <VBox prefHeight="561.0" prefWidth="266.0">
+                  <VBox prefHeight="435.0" prefWidth="296.0">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Update credentials:">
                            <font>
@@ -48,7 +48,7 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="name">
+                        <TextField fx:id="name" prefHeight="25.0" prefWidth="122.0" promptText="Enter your name">
                            <VBox.margin>
                               <Insets bottom="20.0" left="10.0" />
                            </VBox.margin>
@@ -61,7 +61,7 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="surname">
+                        <TextField fx:id="surname" promptText="Enter your surname">
                            <VBox.margin>
                               <Insets bottom="20.0" left="10.0" />
                            </VBox.margin>
@@ -74,7 +74,7 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="email">
+                        <TextField fx:id="email" promptText="Enter your email">
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
@@ -130,7 +130,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Hyperlink layoutX="14.0" layoutY="14.0" text="Forgot password?" textFill="WHITE">
+                  <Hyperlink fx:id="forgotPassword" layoutX="6.0" layoutY="14.0" onAction="#forgotPassword" text="Forgot password?" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>

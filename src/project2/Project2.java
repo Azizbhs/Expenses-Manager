@@ -26,6 +26,9 @@ public class Project2 extends Application{
         
         Scene scene = new Scene(root);
         
+        scene.getRoot().requestFocus();
+
+        
         stage.setScene(scene);
         stage.setTitle("Expenses Manager");
         try {
