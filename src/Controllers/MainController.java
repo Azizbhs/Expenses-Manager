@@ -61,17 +61,17 @@ public class MainController implements Initializable {
     }    
     
     @FXML
-private void categories(ActionEvent event) throws IOException {
-    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Categories.fxml"));
-    Parent root = loader.load();
-    
-    Scene scene = new Scene(root);
-    
-    currentStage.setScene(scene);
-    currentStage.setTitle("Expenses Manager");
-    currentStage.show();   
+    private void categories(ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Categories.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+
+        currentStage.setScene(scene);
+        currentStage.setTitle("Expenses Manager");
+        currentStage.show();   
 }
 
 
@@ -129,30 +129,23 @@ private void categories(ActionEvent event) throws IOException {
 
     @FXML
     private void logOut(ActionEvent event) throws IOException {
-    // Guardar el Stage actual en una variable
     Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-    // Mostrar el diálogo de confirmación
     Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
     confirmationDialog.setTitle("Confirmation");
-    confirmationDialog.setHeaderText("Confirm Action");
+    confirmationDialog.setHeaderText("Log out?");
     confirmationDialog.setContentText("Are you sure you want to perform this action?");
 
-    // Personalizar los botones del diálogo
     confirmationDialog.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
 
-    // Manejar la respuesta del usuario
     confirmationDialog.showAndWait().ifPresent(response -> {
         if (response == ButtonType.YES) {
             try {
-                // Cargar el nuevo FXML para el inicio de sesión
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LogIn.fxml"));
                 Parent root = loader.load();
 
-                // Crear una nueva escena con el FXML cargado
                 Scene scene = new Scene(root);
 
-                // Establecer la nueva escena en el Stage actual
                 currentStage.setScene(scene);
                 currentStage.setTitle("Expenses Manager");
                 currentStage.show(); 

@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 /**
  *
@@ -27,6 +28,11 @@ public class Project2 extends Application{
         
         stage.setScene(scene);
         stage.setTitle("Expenses Manager");
+        try {
+            stage.getIcons().add(new Image("/image/logo.png"))  ;
+        }catch (Exception e){
+            System.out.println("Image could not be loaded");
+        }
         stage.show();
     }
     //Hola
@@ -47,4 +53,5 @@ public class Project2 extends Application{
         stage.show();
 
     }
+    
 }
