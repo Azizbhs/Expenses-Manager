@@ -19,34 +19,6 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="nickname" layoutX="118.0" layoutY="343.0" promptText="Enter you nickname" styleClass="signupBor" stylesheets="@styleSheet.css">
-         <font>
-            <Font size="13.0" />
-         </font></TextField>
-      <PasswordField fx:id="password" layoutX="117.0" layoutY="408.0" promptText="Enter your password" styleClass="signupBor">
-         <font>
-            <Font size="13.0" />
-         </font></PasswordField>
-      <PasswordField fx:id="repeatPassword" layoutX="119.0" layoutY="475.0" promptText="Confirm password" styleClass="signupBor">
-         <font>
-            <Font size="13.0" />
-         </font></PasswordField>
-      <Text fill="#088f8f" layoutX="119.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname:">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
-      <Text fill="#088f8f" layoutX="117.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
-      <Text fill="#088f8f" layoutX="117.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm password:">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
-      <Button fx:id="signUpButton" layoutX="144.0" layoutY="544.0" mnemonicParsing="false" onAction="#signUp" prefHeight="26.0" prefWidth="112.0" styleClass="btn" text="Sign Up" textFill="WHITE" />
       <Text fill="#088f8f" layoutX="119.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
          <font>
             <Font size="13.0" />
@@ -61,7 +33,7 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <TextField fx:id="email" layoutX="119.0" layoutY="276.0" promptText="Enter your email" styleClass="signupBor">
+      <TextField fx:id="surname" layoutX="119.0" layoutY="209.0" promptText="Enter your surname" styleClass="signupBor">
          <font>
             <Font size="13.0" />
          </font></TextField>
@@ -70,9 +42,37 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <TextField fx:id="surname" layoutX="119.0" layoutY="209.0" promptText="Enter your surname" styleClass="signupBor">
+      <TextField fx:id="email" layoutX="119.0" layoutY="276.0" promptText="Enter your email" styleClass="signupBor">
          <font>
             <Font size="13.0" />
          </font></TextField>
+      <Text fill="#088f8f" layoutX="119.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nickname" layoutX="118.0" layoutY="343.0" promptText="Enter you nickname" styleClass="signupBor" stylesheets="@styleSheet.css">
+         <font>
+            <Font size="13.0" />
+         </font></TextField>
+      <Text fill="#088f8f" layoutX="117.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <PasswordField fx:id="password" layoutX="117.0" layoutY="408.0" promptText="Enter your password" styleClass="signupBor">
+         <font>
+            <Font size="13.0" />
+         </font></PasswordField>
+      <Text fill="#088f8f" layoutX="117.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm password:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <PasswordField fx:id="repeatPassword" layoutX="119.0" layoutY="475.0" promptText="Confirm password" styleClass="signupBor">
+         <font>
+            <Font size="13.0" />
+         </font></PasswordField>
+      <Button fx:id="signUpButton" layoutX="144.0" layoutY="544.0" mnemonicParsing="false" onAction="#signUp" prefHeight="26.0" prefWidth="112.0" styleClass="btn" text="Sign Up" textFill="WHITE" />
    </children>
 </AnchorPane>

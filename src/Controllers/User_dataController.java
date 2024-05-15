@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import project2.Project2;
 
@@ -156,6 +157,7 @@ public class User_dataController implements Initializable {
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
+        stage.initModality(Modality.APPLICATION_MODAL);
 
         scene.getRoot().requestFocus();
         stage.setScene(scene);

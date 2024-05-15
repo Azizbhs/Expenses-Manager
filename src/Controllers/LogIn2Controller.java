@@ -56,6 +56,7 @@ public class LogIn2Controller implements Initializable {
         Parent root = miCargador.load();
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.setTitle("Sign Up");
         stage.show();
@@ -84,6 +85,7 @@ public class LogIn2Controller implements Initializable {
 
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
+        stage.initModality(Modality.APPLICATION_MODAL);
 
         stage.setScene(scene);
         stage.setTitle("Reset password");
