@@ -5,41 +5,60 @@
 package Controllers;
 
 import java.net.URL;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
-import project2.Project2;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
  *
- * @author leoda
+ * @author MABENHAS
  */
 public class SignUpController implements Initializable {
 
     @FXML
-    private Button signUp;
+    private TextField userNameField;
+    @FXML
+    private PasswordField passwordField2;
+    @FXML
+    private PasswordField repeatPassword;
+    @FXML
+    private TextField realName;
+    @FXML
+    private TextField email;
+    @FXML
+    private Button signUpButton;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        BooleanBinding allFieldsFilled = Bindings.createBooleanBinding(() -> 
+            !userNameField.getText().isEmpty() && 
+            !passwordField2.getText().isEmpty() && 
+            !repeatPassword.getText().isEmpty() && 
+            !realName.getText().isEmpty() && 
+            !email.getText().isEmpty(), 
+            userNameField.textProperty(), 
+            passwordField2.textProperty(), 
+            repeatPassword.textProperty(), 
+            realName.textProperty(), 
+            email.textProperty()
+        );
+
+        // Bind the disable property of the button to the negation of the BooleanBinding
+        signUpButton.disableProperty().bind(allFieldsFilled.not());
     }    
 
     @FXML
     private void signUp(ActionEvent event) {
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        //create User and upload to cloud
-        currentStage.close(); 
     }
     
 }
