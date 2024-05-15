@@ -93,10 +93,16 @@ public class MainController implements Initializable {
 
     @FXML
     private void cuentaOnAction(ActionEvent event) throws IOException{
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/User_data.fxml"));
         Parent root = loader.load();
 
-        Project2.setRoot(root);
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        currentStage.setScene(scene);
+        currentStage.setTitle("Expenses Manager");
+        currentStage.show();  
     }
 
     @FXML
@@ -121,7 +127,7 @@ public class MainController implements Initializable {
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
-
+        
         currentStage.setScene(scene);
         currentStage.setTitle("Expenses Manager");
         currentStage.show();  
@@ -145,6 +151,7 @@ public class MainController implements Initializable {
                 Parent root = loader.load();
 
                 Scene scene = new Scene(root);
+                scene.getRoot().requestFocus();
 
                 currentStage.setScene(scene);
                 currentStage.setTitle("Expenses Manager");

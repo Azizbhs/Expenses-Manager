@@ -157,8 +157,9 @@ public class User_dataController implements Initializable {
 
         Scene scene = new Scene(root);
 
+        scene.getRoot().requestFocus();
         stage.setScene(scene);
-        stage.setTitle("Reset password");
+        stage.setTitle("Change password");
         stage.show();  
     }
     

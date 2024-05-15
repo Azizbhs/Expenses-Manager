@@ -4,61 +4,68 @@
  */
 package Controllers;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import project2.Project2;
 
 /**
  * FXML Controller class
  *
- * @author MABENHAS
+ * @author leoda
  */
 public class SignUpController implements Initializable {
 
     @FXML
-    private TextField userNameField;
+    private TextField nickname;
     @FXML
-    private PasswordField passwordField2;
+    private PasswordField password;
     @FXML
     private PasswordField repeatPassword;
     @FXML
-    private TextField realName;
+    private Button signUpButton;
+    @FXML
+    private TextField name;
     @FXML
     private TextField email;
     @FXML
-    private Button signUpButton;
+    private TextField surname;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // TODO
         BooleanBinding allFieldsFilled = Bindings.createBooleanBinding(() -> 
-            !userNameField.getText().isEmpty() && 
-            !passwordField2.getText().isEmpty() && 
-            !repeatPassword.getText().isEmpty() && 
-            !realName.getText().isEmpty() && 
-            !email.getText().isEmpty(), 
-            userNameField.textProperty(), 
-            passwordField2.textProperty(), 
-            repeatPassword.textProperty(), 
-            realName.textProperty(), 
-            email.textProperty()
-        );
-
-        // Bind the disable property of the button to the negation of the BooleanBinding
+        !name.getText().isEmpty() && 
+        !password.getText().isEmpty() && !nickname.getText().isEmpty() && !repeatPassword.getText().isEmpty() && 
+        !email.getText().isEmpty() && !surname.getText().isEmpty(), nickname.textProperty(), password.textProperty(),
+        repeatPassword.textProperty(), name.textProperty(), surname.textProperty(), email.textProperty());
+        
         signUpButton.disableProperty().bind(allFieldsFilled.not());
     }    
 
     @FXML
-    private void signUp(ActionEvent event) {
+    private void signUp(ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        currentStage.close(); 
     }
     
 }

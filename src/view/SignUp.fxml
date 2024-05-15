@@ -14,7 +14,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Text fill="#088f8f" layoutX="141.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="create your account">
+      <Text fill="#088f8f" layoutX="141.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create your account">
          <font>
             <Font size="14.0" />
          </font>
@@ -41,7 +41,7 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <Text fill="#088f8f" layoutX="117.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat Password:">
+      <Text fill="#088f8f" layoutX="117.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm password:">
          <font>
             <Font size="13.0" />
          </font>

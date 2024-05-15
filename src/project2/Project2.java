@@ -17,6 +17,7 @@ import javafx.stage.Stage;
  */
 public class Project2 extends Application{
     public static Stage stage;
+    public static Scene scene;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -55,6 +56,10 @@ public class Project2 extends Application{
         stage.getScene().setRoot(root);
         stage.show();
 
+    }
+    
+    public static Scene getScene(){
+        return scene;
     }
     
 }

@@ -130,7 +130,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Hyperlink fx:id="forgotPassword" layoutX="6.0" layoutY="14.0" onAction="#forgotPassword" text="Forgot password?" textFill="WHITE">
+                  <Hyperlink fx:id="forgotPassword" layoutX="6.0" layoutY="14.0" onAction="#forgotPassword" text="Change password?" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>

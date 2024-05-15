@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -43,10 +44,7 @@ public class LogIn2Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         BooleanBinding allFieldsFilled = Bindings.createBooleanBinding(() -> 
-      !usernameField.getText().isEmpty() && 
-    !passwordField.getText().isEmpty(), 
-    usernameField.textProperty(), 
-    passwordField.textProperty()
+      !usernameField.getText().isEmpty() && !passwordField.getText().isEmpty(), usernameField.textProperty(), passwordField.textProperty()
 );
         logInButton.disableProperty().bind(allFieldsFilled.not());
     }    
@@ -57,15 +55,24 @@ public class LogIn2Controller implements Initializable {
         Stage stage = new Stage();
         Parent root = miCargador.load();
         Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
         stage.setScene(scene);
         stage.setTitle("Sign Up");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        //la ventana se muestra modal
-        stage.showAndWait();
+        stage.show();
     }
 
     @FXML
-    private void logIn(ActionEvent event) {
+    private void logIn(ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+
+        currentStage.setScene(scene);
+        currentStage.setTitle("Expenses Manager");
+        currentStage.show(); 
     }
 
     @FXML
@@ -76,6 +83,7 @@ public class LogIn2Controller implements Initializable {
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
 
         stage.setScene(scene);
         stage.setTitle("Reset password");
