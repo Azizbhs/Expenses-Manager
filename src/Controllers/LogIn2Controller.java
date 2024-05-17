@@ -21,6 +21,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.*;
 
 
 public class LogIn2Controller implements Initializable {
@@ -63,5 +64,6 @@ public class LogIn2Controller implements Initializable {
 
     @FXML
     private void logIn(ActionEvent event) {
+        
     }
 }

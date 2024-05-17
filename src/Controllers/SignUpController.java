@@ -8,6 +8,8 @@ import java.net.URL;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import java.time.LocalDate;
 import javafx.stage.Stage;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -19,10 +21,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.*;
 
 /**
  * FXML Controller class
- *
+ *  
+ * 
  * @author MABENHAS
  */
 public class SignUpController implements Initializable {
@@ -122,6 +126,9 @@ public class SignUpController implements Initializable {
     @FXML
     private void signUp(ActionEvent event) throws IOException {
         boolean isValid = true;
+        boolean success = false;
+        LocalDate currentDate = LocalDate.now();
+        Image image = new Image("image/editProfile.png");
         
         if (!isValidEmail(getEmail())) {
         errorLabel.setText("Invalid email address.");
@@ -134,7 +141,13 @@ public class SignUpController implements Initializable {
         errorLabel.setText("Passwords do not match.");
         errorLabel.setVisible(true);
         isValid = false;
+    }  
+        try{
+        success = Acount.getInstance().registerUser(firstName, surName, this.getEmail(),this.getUserName(), this.getPassword(),image, currentDate);}
+        catch (AcountDAOException e) {
+        System.err.println("An error occurred while registering the user: " + e.getMessage());
     }
+       
         if(!isValid){
           realName.clear();
           email.clear();

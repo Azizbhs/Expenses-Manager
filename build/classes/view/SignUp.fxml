@@ -51,6 +51,6 @@
          </font>
       </Text>
       <TextField fx:id="email" layoutX="126.0" layoutY="246.0" promptText="Enter your email" styleClass="signupBor" />
-      <Label fx:id="errorLabel" layoutX="157.0" layoutY="488.0" text="Something" textAlignment="CENTER" textFill="RED" />
+      <Label fx:id="errorLabel" layoutX="140.0" layoutY="488.0" text="Something" textAlignment="CENTER" textFill="RED" />
    </children>
 </AnchorPane>
