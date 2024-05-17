@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -34,12 +35,17 @@ public class LogIn2Controller implements Initializable {
     private Button logInButton;
     @FXML
     private Button signupButton;
+    @FXML
+    private Label errorLabel;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        errorLabel.setVisible(false);
+        
         BooleanBinding allFieldsFilled = Bindings.createBooleanBinding(() -> 
       !usernameField.getText().isEmpty() && 
     !passwordField.getText().isEmpty(), 
@@ -63,7 +69,25 @@ public class LogIn2Controller implements Initializable {
     }
 
     @FXML
-    private void logIn(ActionEvent event) {
+    private void logIn(ActionEvent event) throws IOException, AcountDAOException {
+        String userName = usernameField.getText();
+        String password = passwordField.getText();
+        
+        
+        boolean isOK = Acount.getInstance().logInUserByCredentials(userName, password);
+       if(!isOK){
+       errorLabel.setVisible(true);
+       usernameField.clear();
+       passwordField.clear();
+       }else{
+          FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
+        Stage stage = new Stage();
+        Parent root = miCargador.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Home");
+        
+       }
         
     }
 }
