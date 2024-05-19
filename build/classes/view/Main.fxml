@@ -64,9 +64,9 @@
                         <Insets left="110.0" />
                      </HBox.margin>
                   </StackPane>
-                  <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="370.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="158.0" prefWidth="280.0">
                      <children>
-                        <Label fx:id="labelWelcome" prefHeight="0.0" prefWidth="352.0" text="Welcome" textFill="WHITE">
+                        <Label fx:id="labelWelcome" prefHeight="40.0" prefWidth="170.0" text="Welcome" textFill="WHITE">
                            <font>
                               <Font name="Calibri Bold" size="34.0" />
                            </font>

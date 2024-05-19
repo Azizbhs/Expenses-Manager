@@ -19,10 +19,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Acount;
+import model.AcountDAOException;
 
 
 public class LogIn2Controller implements Initializable {
@@ -37,14 +40,21 @@ public class LogIn2Controller implements Initializable {
     private Button signupButton;
     @FXML
     private Hyperlink forgotPassword;
+    @FXML
+    private Label erroeLabel;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        erroeLabel.setVisible(false);
+        
         BooleanBinding allFieldsFilled = Bindings.createBooleanBinding(() -> 
-      !usernameField.getText().isEmpty() && !passwordField.getText().isEmpty(), usernameField.textProperty(), passwordField.textProperty()
+      !usernameField.getText().isEmpty() && 
+    !passwordField.getText().isEmpty(), 
+    usernameField.textProperty(), 
+    passwordField.textProperty()
 );
         logInButton.disableProperty().bind(allFieldsFilled.not());
     }    
@@ -55,25 +65,39 @@ public class LogIn2Controller implements Initializable {
         Stage stage = new Stage();
         Parent root = miCargador.load();
         Scene scene = new Scene(root);
-        scene.getRoot().requestFocus();
-        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.setTitle("Sign Up");
-        stage.show();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
     @FXML
-    private void logIn(ActionEvent event) throws IOException {
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
-        Parent root = loader.load();
+    private void logIn(ActionEvent event) throws IOException, AcountDAOException {
+        String userName = usernameField.getText();
+        String password = passwordField.getText();
+        
+        
+        boolean isOK = Acount.getInstance().logInUserByCredentials(userName, password);
+       if(!isOK){
+       erroeLabel.setVisible(true);
+       usernameField.clear();
+       passwordField.clear();
+       }else{
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
+            Parent root = loader.load();
 
-        Scene scene = new Scene(root);
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Home");
+            stage.show();
 
-        currentStage.setScene(scene);
-        currentStage.setTitle("Expenses Manager");
-        currentStage.show(); 
+            // Close the current stage
+            Stage currentStage = (Stage) usernameField.getScene().getWindow();
+            currentStage.close();
+        
+       }
+        
     }
 
     @FXML
