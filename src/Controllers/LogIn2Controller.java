@@ -36,7 +36,7 @@ public class LogIn2Controller implements Initializable {
     @FXML
     private Button signupButton;
     @FXML
-    private Label errorLabel;
+    private Label erroeLabel;
 
     /**
      * Initializes the controller class.
@@ -44,7 +44,7 @@ public class LogIn2Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        errorLabel.setVisible(false);
+        erroeLabel.setVisible(false);
         
         BooleanBinding allFieldsFilled = Bindings.createBooleanBinding(() -> 
       !usernameField.getText().isEmpty() && 
@@ -76,16 +76,22 @@ public class LogIn2Controller implements Initializable {
         
         boolean isOK = Acount.getInstance().logInUserByCredentials(userName, password);
        if(!isOK){
-       errorLabel.setVisible(true);
+       erroeLabel.setVisible(true);
        usernameField.clear();
        passwordField.clear();
        }else{
-          FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
-        Stage stage = new Stage();
-        Parent root = miCargador.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Home");
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Home");
+            stage.show();
+
+            // Close the current stage
+            Stage currentStage = (Stage) usernameField.getScene().getWindow();
+            currentStage.close();
         
        }
         

@@ -124,11 +124,11 @@ public class SignUpController implements Initializable {
     
 
     @FXML
-    private void signUp(ActionEvent event) throws IOException {
+    private void signUp(ActionEvent event) throws IOException, AcountDAOException{
         boolean isValid = true;
         boolean success = false;
         LocalDate currentDate = LocalDate.now();
-        Image image = new Image("image/editProfile.png");
+        Image image = new Image("image/edit_Profile.png");
         
         if (!isValidEmail(getEmail())) {
         errorLabel.setText("Invalid email address.");
@@ -142,13 +142,11 @@ public class SignUpController implements Initializable {
         errorLabel.setVisible(true);
         isValid = false;
     }  
-        try{
-        success = Acount.getInstance().registerUser(firstName, surName, this.getEmail(),this.getUserName(), this.getPassword(),image, currentDate);}
-        catch (AcountDAOException e) {
-        System.err.println("An error occurred while registering the user: " + e.getMessage());
-    }
-       
-        if(!isValid){
+        
+        success = Acount.getInstance().registerUser(firstName, surName, this.getEmail(),this.getUserName(), this.getPassword(),image, currentDate);
+        
+        
+        if(!isValid || !success){
           realName.clear();
           email.clear();
           passwordField2.clear();
@@ -159,10 +157,10 @@ public class SignUpController implements Initializable {
             errorLabel.setText("You have been registered!");
             errorLabel.setVisible(true);
    
-    
-          Platform.runLater(() -> {
+        Platform.runLater(() -> {
         ((Stage) userNameField.getScene().getWindow()).close();
     });
+    
         }
         
 
