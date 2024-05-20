@@ -7,6 +7,10 @@ package Controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,8 +21,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import model.Acount;
+import model.AcountDAOException;
+import model.User;
 
 /**
  * FXML Controller class
@@ -36,13 +45,17 @@ public class Change_passwordController implements Initializable {
     @FXML
     private Button save;
 
-    /**
-     * Initializes the controller class.
-     */
+    private String tempPassword;
+    private String tempRepeatPassword;
+    @FXML
+    private Label message;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        // Inicializa las variables temporales
+        tempPassword = "";
+        tempRepeatPassword = "";
+    }
 
     @FXML
     private void cancel(ActionEvent event) {
@@ -51,12 +64,15 @@ public class Change_passwordController implements Initializable {
         Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationDialog.setTitle("Confirmation");
         confirmationDialog.setHeaderText("No changes will be saved.");
-        confirmationDialog.setContentText(" Do you wish to proceed?");
+        confirmationDialog.setContentText("Do you wish to proceed?");
 
         confirmationDialog.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
 
         confirmationDialog.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
+                // Restaura las contraseñas temporales a los campos
+                password.setText(tempPassword);
+                repeatPassword.setText(tempRepeatPassword);
                 currentStage.close();
             }
         });
@@ -75,8 +91,46 @@ public class Change_passwordController implements Initializable {
 
         confirmationDialog.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
-                currentStage.close();
-            }
+                // Verifica si las contraseñas coinciden
+                if (!password.getText().equals(repeatPassword.getText())) {
+                    Alert errorDialog = new Alert(Alert.AlertType.ERROR);
+                    errorDialog.setTitle("Error");
+                    errorDialog.setHeaderText("Passwords do not match");
+                    errorDialog.setContentText("Please ensure both passwords match.");
+                    errorDialog.showAndWait();
+                    return;
+                } else if (password.getText().length() < 6){
+                    Alert errorDialog = new Alert(Alert.AlertType.ERROR);
+                    errorDialog.setTitle("Error");
+                    errorDialog.setHeaderText("Password too short!");
+                    errorDialog.setContentText("Please ensure your password contains at least 6 characters.");
+                    errorDialog.showAndWait();
+                    return;
+                }
+
+                // Actualiza la contraseña real
+                User user = null;
+                try {
+                    user = Acount.getInstance().getLoggedUser();
+                } catch (AcountDAOException ex) {
+                    Logger.getLogger(Change_passwordController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Change_passwordController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                user.setPassword(password.getText());
+
+                message.setStyle("-fx-text-fill: white;");
+                message.setText("Password changed \nsuccessfully!");
+                message.setVisible(true);
+
+            // Create a Timeline to delay closing the window
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), e -> {
+                    ((Stage) message.getScene().getWindow()).close();
+                }));
+                timeline.play();
+                }
+                
+            
         });
     }
     

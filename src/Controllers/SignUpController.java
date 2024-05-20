@@ -6,14 +6,17 @@ package Controllers;
 
 import java.net.URL;
 import java.io.IOException;
+import javafx.util.Duration;
 import javafx.application.Platform;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import java.time.LocalDate;
 import javafx.stage.Stage;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import java.util.ResourceBundle;
+import javax.swing.Timer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +25,31 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.*;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import model.Acount;
+import model.AcountDAOException;
 
 /**
  * FXML Controller class
@@ -30,20 +58,12 @@ import model.*;
  * @author MABENHAS
  */
 public class SignUpController implements Initializable {
-
-    private TextField userNameField;
-    private PasswordField passwordField2;
-    @FXML
-    private PasswordField repeatPassword;
-    private TextField realName;
-    @FXML
-    private TextField email;
-    @FXML
-    private Button signUpButton;
-    private Label errorLabel;
+   
     
     private String firstName;
     private String surName;
+    @FXML
+    private Label errorLabel;
     @FXML
     private TextField name;
     @FXML
@@ -52,6 +72,12 @@ public class SignUpController implements Initializable {
     private TextField nickname;
     @FXML
     private PasswordField password;
+    @FXML
+    private PasswordField repeatPassword;
+    @FXML
+    private TextField email;
+    @FXML
+    private Button signUpButton;
     
 
     /**
@@ -60,31 +86,35 @@ public class SignUpController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         BooleanBinding allFieldsFilled = Bindings.createBooleanBinding(() -> 
-            !userNameField.getText().isEmpty() && 
-            !passwordField2.getText().isEmpty() && 
+            !name.getText().isEmpty() && 
             !repeatPassword.getText().isEmpty() && 
-            !realName.getText().isEmpty() && 
-            !email.getText().isEmpty(), 
-            userNameField.textProperty(), 
-            passwordField2.textProperty(), 
+            !repeatPassword.getText().isEmpty() && 
+            !surname.getText().isEmpty() && 
+            !email.getText().isEmpty() &&
+            !nickname.getText().isEmpty(), 
+            name.textProperty(), 
+            password.textProperty(), 
             repeatPassword.textProperty(), 
-            realName.textProperty(), 
-            email.textProperty()
+            surname.textProperty(), 
+            email.textProperty(), 
+            nickname.textProperty()
         );
 
         signUpButton.disableProperty().bind(allFieldsFilled.not());
         
         errorLabel.setVisible(false);
         
+        
+        
     }
 
     public String getUserName() {
-        return userNameField.getText();
+        return nickname.getText();
     }
 
     // Method to get text from PasswordField2
     public String getPassword() {
-        return passwordField2.getText();
+        return password.getText();
     }
 
     // Method to get text from RepeatPassword
@@ -93,8 +123,8 @@ public class SignUpController implements Initializable {
     }
 
     // Method to get text from RealName
-    public String getRealName() {
-        return realName.getText();
+    public String getName() {
+        return name.getText();
     }
 
     // Method to get text from Email
@@ -102,19 +132,8 @@ public class SignUpController implements Initializable {
         return email.getText();
     }    
     
-    private void separateName(String fullName ){
-     int spaceIndex = fullName.indexOf(" ");
-        
-        if (spaceIndex != -1) {
-            // Extract the first name
-             this.firstName = fullName.substring(0, spaceIndex);
-            
-            // Extract the last name (everything after the first space)
-            this.surName = fullName.substring(spaceIndex + 1);
-            
-        } else {
-            this.firstName = fullName;
-        }
+    public String getSurname(){
+        return surname.getText();
     }
     
     public boolean isValidEmail(String email) {
@@ -125,50 +144,60 @@ public class SignUpController implements Initializable {
      return password.equals(repeatPassword);
     }
     
-    
+   
 
     @FXML
-    private void signUp(ActionEvent event) throws IOException, AcountDAOException{
+    private void signUp(ActionEvent event) throws IOException, AcountDAOException {
         boolean isValid = true;
         boolean success = false;
         LocalDate currentDate = LocalDate.now();
         Image image = new Image("image/edit_Profile.png");
-        
-        if (!isValidEmail(getEmail())) {
-        errorLabel.setText("Invalid email address.");
-        errorLabel.setVisible(true);
-        isValid = false;
-    }
 
-    // Check if the passwords match
-        else if(!areEqualPasswords(getPassword(), getRepeatPassword())) {
-        errorLabel.setText("Passwords do not match.");
-        errorLabel.setVisible(true);
-        isValid = false;
-    }  
-        
-        success = Acount.getInstance().registerUser(firstName, surName, this.getEmail(),this.getUserName(), this.getPassword(),image, currentDate);
-        
-        
-        if(!isValid || !success){
-          realName.clear();
-          email.clear();
-          passwordField2.clear();
-          repeatPassword.clear();
-          userNameField.clear();
-        }else{
-            errorLabel.setStyle("-fx-text-fill: " + "green");
+        if (!isValidEmail(getEmail())) {
+            errorLabel.setText("Invalid email address");
+            errorLabel.setVisible(true);
+            isValid = false;
+        } else if (!areEqualPasswords(getPassword(), getRepeatPassword())) {
+            errorLabel.setText("Passwords do not match");
+            errorLabel.setVisible(true);
+            isValid = false;
+        } else if (getUserName().equals(getName())) {
+            errorLabel.setText("Nickname cannot be equal to your real name");
+            errorLabel.setVisible(true);
+            isValid = false;
+        } else if (getUserName().contains(" ")) {
+            errorLabel.setText("Nickname cannot contain blank spaces!");
+            errorLabel.setVisible(true);
+            isValid = false;
+        } else if (getPassword().length() < 6) {
+            errorLabel.setText("Password is too short!");
+            errorLabel.setVisible(true);
+            isValid = false;
+        }
+
+        if (isValid) {
+            success = Acount.getInstance().registerUser(getName(), getSurname(), getEmail(), getUserName(), getPassword(), image, currentDate);
+        }
+
+        if (!isValid || !success) {
+            name.clear();
+            surname.clear();
+            email.clear();
+            password.clear();
+            repeatPassword.clear();
+            nickname.clear();
+        } else {
+            errorLabel.setStyle("-fx-text-fill: green;");
             errorLabel.setText("You have been registered!");
             errorLabel.setVisible(true);
-   
-        Platform.runLater(() -> {
-        ((Stage) userNameField.getScene().getWindow()).close();
-    });
-    
-        }
-        
 
-     }
-    
+            // Create a Timeline to delay closing the window
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), e -> {
+                ((Stage) nickname.getScene().getWindow()).close();
+            }));
+            timeline.play();
+        }
+    }
+
    }
 

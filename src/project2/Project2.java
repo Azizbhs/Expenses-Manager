@@ -28,7 +28,8 @@ public class Project2 extends Application{
         Scene scene = new Scene(root);
         
         scene.getRoot().requestFocus();
-
+        stage.setMinWidth(715);
+        stage.setMinHeight(530);  
         
         stage.setScene(scene);
         stage.setTitle("Expenses Manager");

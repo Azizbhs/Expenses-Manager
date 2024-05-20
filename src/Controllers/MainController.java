@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +28,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Acount;
+import model.AcountDAOException;
+import model.User;
 /**
  * FXML Controller class
  *
@@ -58,6 +63,15 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        User user = null;
+        try {
+            user = Acount.getInstance().getLoggedUser();
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        changePhoto.setImage(user.getImage());
     }    
     
     @FXML
@@ -68,7 +82,11 @@ public class MainController implements Initializable {
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
-
+        try {
+            currentStage.getIcons().add(new Image("/image/logo.png"))  ;
+        }catch (Exception e){
+            System.out.println("Image could not be loaded");
+        }
         currentStage.setScene(scene);
         currentStage.setTitle("Expenses Manager");
         currentStage.show();   
@@ -76,7 +94,7 @@ public class MainController implements Initializable {
 
 
     @FXML
-    private void imagenOnAction(ActionEvent event) {
+    private void imagenOnAction(ActionEvent event) throws AcountDAOException, IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Selecciona una imagen");
         fileChooser.getExtensionFilters().addAll(
@@ -86,8 +104,8 @@ public class MainController implements Initializable {
         if (selectedFile != null) {
             Image image = new Image(selectedFile.toURI().toString());
             changePhoto.setImage(image);
-            //Member currentMember = GreenBallApp.getMember();
-            //currentMember.setImage(image);
+            User user = Acount.getInstance().getLoggedUser();
+            user.setImage(image);
         }
     }
 
@@ -97,9 +115,14 @@ public class MainController implements Initializable {
     
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/User_data.fxml"));
         Parent root = loader.load();
-
+        
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
+        try {
+            currentStage.getIcons().add(new Image("/image/logo.png"))  ;
+        }catch (Exception e){
+            System.out.println("Image could not be loaded");
+        }
         currentStage.setScene(scene);
         currentStage.setTitle("Expenses Manager");
         currentStage.show();  
@@ -113,7 +136,11 @@ public class MainController implements Initializable {
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
-
+        try {
+            currentStage.getIcons().add(new Image("/image/logo.png"))  ;
+        }catch (Exception e){
+            System.out.println("Image could not be loaded");
+        }
         currentStage.setScene(scene);
         currentStage.setTitle("Expenses Manager");
         currentStage.show();   
@@ -127,7 +154,11 @@ public class MainController implements Initializable {
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
-        
+        try {
+            currentStage.getIcons().add(new Image("/image/logo.png"))  ;
+        }catch (Exception e){
+            System.out.println("Image could not be loaded");
+        }
         currentStage.setScene(scene);
         currentStage.setTitle("Expenses Manager");
         currentStage.show();  

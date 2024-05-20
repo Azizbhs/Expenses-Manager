@@ -38,16 +38,16 @@
       </AnchorPane>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="158.0" prefWidth="388.0">
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets bottom="30.0" top="30.0" />
                </VBox.margin>
                <children>
-                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                  <StackPane prefHeight="249.0" prefWidth="200.0">
                      <children>
-                        <Button id="imagebutton" fx:id="image" mnemonicParsing="false" onAction="#imagenOnAction" prefHeight="172.0" prefWidth="201.0" style="-fx-background-color: #ffffff;">
+                        <Button id="imagebutton" fx:id="image" mnemonicParsing="false" onAction="#imagenOnAction" prefHeight="158.0" prefWidth="282.0" style="-fx-background-color: transparent;">
                            <graphic>
                               <ImageView fx:id="changePhoto" fitHeight="150.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -64,7 +64,7 @@
                         <Insets left="110.0" />
                      </HBox.margin>
                   </StackPane>
-                  <VBox alignment="CENTER_LEFT" prefHeight="158.0" prefWidth="280.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="158.0" prefWidth="228.0">
                      <children>
                         <Label fx:id="labelWelcome" prefHeight="40.0" prefWidth="170.0" text="Welcome" textFill="WHITE">
                            <font>
@@ -79,7 +79,7 @@
                               <Insets left="2.0" />
                            </VBox.margin>
                         </Label>
-                        <Hyperlink fx:id="linkMyAccount" onAction="#cuentaOnAction" prefHeight="23.0" prefWidth="89.0" text="Profile &gt;" textFill="WHITE">
+                        <Hyperlink fx:id="linkMyAccount" onAction="#cuentaOnAction" prefHeight="23.0" prefWidth="62.0" style="-fx-background-color: #ffffff; -fx-text-fill: #008080;" text="Profile &gt;" textFill="WHITE">
                            <font>
                               <Font name="Calibri Bold" size="14.0" />
                            </font>
@@ -91,59 +91,52 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="246.0" prefWidth="700.0">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
+            <GridPane prefHeight="200.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="expenses" alignment="CENTER" mnemonicParsing="false" onAction="#expenses" style="-fx-background-color: #ffffff;" GridPane.halignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/expenses.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="account" alignment="CENTER" mnemonicParsing="false" onAction="#account" style="-fx-background-color: #ffffff;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/account.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="categories" alignment="CENTER" mnemonicParsing="false" onAction="#categories" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/categories.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </GridPane>
          </children>
       </VBox>
    </center>
-   <bottom>
-      <GridPane prefHeight="200.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Button fx:id="expenses" alignment="CENTER" mnemonicParsing="false" onAction="#expenses" style="-fx-background-color: #ffffff;" GridPane.halignment="CENTER">
-               <graphic>
-                  <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/expenses.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Button>
-            <Button fx:id="account" alignment="CENTER" mnemonicParsing="false" onAction="#account" style="-fx-background-color: #ffffff;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
-               <graphic>
-                  <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/account.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Button>
-            <Button fx:id="categories" alignment="CENTER" mnemonicParsing="false" onAction="#categories" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-               <graphic>
-                  <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/categories.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </GridPane>
-   </bottom>
 </BorderPane>

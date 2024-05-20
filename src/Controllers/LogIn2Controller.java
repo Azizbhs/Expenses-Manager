@@ -22,6 +22,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Acount;
@@ -65,8 +66,16 @@ public class LogIn2Controller implements Initializable {
         Stage stage = new Stage();
         Parent root = miCargador.load();
         Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
         stage.setScene(scene);
+        stage.setMinWidth(400);
+        stage.setMinHeight(600);  
         stage.setTitle("Sign Up");
+        try {
+            stage.getIcons().add(new Image("/image/logo.png"))  ;
+        }catch (Exception e){
+            System.out.println("Image could not be loaded");
+        }
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
@@ -90,8 +99,14 @@ public class LogIn2Controller implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Home");
+            stage.setMinHeight(530);
+            stage.setMinWidth(715);
             stage.show();
-
+            try {
+            stage.getIcons().add(new Image("/image/logo.png"))  ;
+        }catch (Exception e){
+            System.out.println("Image could not be loaded");
+        }
             // Close the current stage
             Stage currentStage = (Stage) usernameField.getScene().getWindow();
             currentStage.close();
@@ -110,8 +125,14 @@ public class LogIn2Controller implements Initializable {
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
         stage.initModality(Modality.APPLICATION_MODAL);
-
+        try {
+            stage.getIcons().add(new Image("/image/logo.png"))  ;
+        }catch (Exception e){
+            System.out.println("Image could not be loaded");
+        }
+        stage.setResizable(false);
         stage.setScene(scene);
+        
         stage.setTitle("Reset password");
         stage.show(); 
     }
