@@ -38,7 +38,7 @@
       </AnchorPane>
    </top>
    <center>
-      <VBox maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="158.0" prefWidth="388.0">
                <VBox.margin>

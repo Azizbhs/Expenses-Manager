@@ -40,8 +40,6 @@ public class LogIn2Controller implements Initializable {
     @FXML
     private Button signupButton;
     @FXML
-    private Hyperlink forgotPassword;
-    @FXML
     private Label erroeLabel;
 
     /**
@@ -69,7 +67,8 @@ public class LogIn2Controller implements Initializable {
         scene.getRoot().requestFocus();
         stage.setScene(scene);
         stage.setMinWidth(400);
-        stage.setMinHeight(600);  
+        stage.setMinHeight(600);
+        stage.setResizable(false);
         stage.setTitle("Sign Up");
         try {
             stage.getIcons().add(new Image("/image/logo.png"))  ;
@@ -86,7 +85,7 @@ public class LogIn2Controller implements Initializable {
         String password = passwordField.getText();
         
         
-        boolean isOK = Acount.getInstance().logInUserByCredentials(userName, password);
+       boolean isOK = Acount.getInstance().logInUserByCredentials(userName, password);
        if(!isOK){
        erroeLabel.setVisible(true);
        usernameField.clear();
@@ -115,11 +114,10 @@ public class LogIn2Controller implements Initializable {
         
     }
 
-    @FXML
     private void forgotPassword(ActionEvent event) throws IOException{
         Stage stage = new Stage();
     
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Forgot_password.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Username.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root);

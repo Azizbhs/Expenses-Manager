@@ -1,37 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package Controllers;
 
-import java.net.URL;
-import java.io.IOException;
-import javafx.util.Duration;
-import javafx.application.Platform;
-import javafx.scene.image.Image;
-import java.time.LocalDate;
-import javafx.stage.Stage;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
-import java.util.ResourceBundle;
-import javax.swing.Timer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import model.*;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
@@ -60,8 +30,6 @@ import model.AcountDAOException;
 public class SignUpController implements Initializable {
    
     
-    private String firstName;
-    private String surName;
     @FXML
     private Label errorLabel;
     @FXML
@@ -137,19 +105,26 @@ public class SignUpController implements Initializable {
     }
     
     public boolean isValidEmail(String email) {
-        return email.contains("@") && email.contains(".");
+        String emailRegex = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$";
+        return email.matches(emailRegex);
     }
     
     public boolean areEqualPasswords(String password, String repeatPassword){
      return password.equals(repeatPassword);
     }
     
+    public boolean alreadyExists(String username) throws IOException, AcountDAOException{
+     return Acount.getInstance().existsLogin(username);
+    }
    
 
     @FXML
     private void signUp(ActionEvent event) throws IOException, AcountDAOException {
         boolean isValid = true;
-        boolean success = false;
+        boolean success = true;
+        //int cases;
+        //delete only password fields if password incorrect
+        //email format incorrect -> only delete email field
         LocalDate currentDate = LocalDate.now();
         Image image = new Image("image/edit_Profile.png");
 
@@ -157,21 +132,41 @@ public class SignUpController implements Initializable {
             errorLabel.setText("Invalid email address");
             errorLabel.setVisible(true);
             isValid = false;
+            email.clear();
+            email.requestFocus();
+            //cases = 0;
         } else if (!areEqualPasswords(getPassword(), getRepeatPassword())) {
             errorLabel.setText("Passwords do not match");
             errorLabel.setVisible(true);
             isValid = false;
+            password.clear();
+            repeatPassword.clear();
+            password.requestFocus();
+            //cases  = 1;
         } else if (getUserName().equals(getName())) {
             errorLabel.setText("Nickname cannot be equal to your real name");
             errorLabel.setVisible(true);
             isValid = false;
+            nickname.clear();
+            nickname.requestFocus();
+        }else if(alreadyExists(this.getUserName())){
+            errorLabel.setText("Username already exists");
+            errorLabel.setVisible(true);
+            isValid = false;
+            nickname.clear();
+            nickname.requestFocus();
         } else if (getUserName().contains(" ")) {
             errorLabel.setText("Nickname cannot contain blank spaces!");
             errorLabel.setVisible(true);
             isValid = false;
+            nickname.clear();
+            nickname.requestFocus();
         } else if (getPassword().length() < 6) {
             errorLabel.setText("Password is too short!");
             errorLabel.setVisible(true);
+            password.clear();
+            repeatPassword.clear();
+            password.requestFocus();
             isValid = false;
         }
 
@@ -179,14 +174,15 @@ public class SignUpController implements Initializable {
             success = Acount.getInstance().registerUser(getName(), getSurname(), getEmail(), getUserName(), getPassword(), image, currentDate);
         }
 
-        if (!isValid || !success) {
+        if (!success) {
             name.clear();
             surname.clear();
             email.clear();
             password.clear();
             repeatPassword.clear();
             nickname.clear();
-        } else {
+            name.requestFocus();
+        } else if(success && isValid) {
             errorLabel.setStyle("-fx-text-fill: green;");
             errorLabel.setText("You have been registered!");
             errorLabel.setVisible(true);
@@ -200,4 +196,3 @@ public class SignUpController implements Initializable {
     }
 
    }
-

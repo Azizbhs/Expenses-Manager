@@ -189,7 +189,5 @@ public class User_dataController implements Initializable {
         stage.setTitle("Change password");
         stage.setResizable(false);
         stage.show();  
-    }
-
-    
+    }   
 }

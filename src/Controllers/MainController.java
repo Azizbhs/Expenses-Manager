@@ -72,6 +72,7 @@ public class MainController implements Initializable {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
         changePhoto.setImage(user.getImage());
+        labelNickName.setText(labelNickName.getText() + " " + user.getNickName());
     }    
     
     @FXML
@@ -96,7 +97,7 @@ public class MainController implements Initializable {
     @FXML
     private void imagenOnAction(ActionEvent event) throws AcountDAOException, IOException {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Selecciona una imagen");
+        fileChooser.setTitle("Select an Image");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Imagenes", "*.png", "*.jpg"));
         File selectedFile = fileChooser.showOpenDialog(Project2.getStage());
@@ -178,6 +179,7 @@ public class MainController implements Initializable {
     confirmationDialog.showAndWait().ifPresent(response -> {
         if (response == ButtonType.YES) {
             try {
+                Acount.getInstance().logOutUser();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LogIn.fxml"));
                 Parent root = loader.load();
 
@@ -189,10 +191,10 @@ public class MainController implements Initializable {
                 currentStage.show(); 
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (AcountDAOException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     });
 }
-
-
 }
