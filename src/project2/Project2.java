@@ -17,6 +17,7 @@ import javafx.stage.Stage;
  */
 public class Project2 extends Application{
     public static Stage stage;
+    public static Scene scene;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -25,6 +26,10 @@ public class Project2 extends Application{
         Parent root = loader.load();
         
         Scene scene = new Scene(root);
+        
+        scene.getRoot().requestFocus();
+        stage.setMinWidth(715);
+        stage.setMinHeight(530);  
         
         stage.setScene(scene);
         stage.setTitle("Expenses Manager");
@@ -52,6 +57,10 @@ public class Project2 extends Application{
         stage.getScene().setRoot(root);
         stage.show();
 
+    }
+    
+    public static Scene getScene(){
+        return scene;
     }
     
 }

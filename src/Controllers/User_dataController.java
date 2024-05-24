@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,13 +20,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Acount;
+import model.AcountDAOException;
+import model.User;
 import project2.Project2;
 
 /**
@@ -35,6 +42,12 @@ import project2.Project2;
 public class User_dataController implements Initializable {
 
     @FXML
+    private ImageView profileImage;
+    @FXML
+    private Button save;
+    @FXML
+    private Button cancel;
+    @FXML
     private TextField name;
     @FXML
     private TextField surname;
@@ -43,45 +56,52 @@ public class User_dataController implements Initializable {
     @FXML
     private Button image;
     @FXML
-    private PasswordField password;
-    @FXML
-    private PasswordField repeatPassword;
-    @FXML
-    private SplitPane splitPane;
-    @FXML
-    private ImageView profileImage;
-    @FXML
-    private Button save;
-    @FXML
-    private Button cancel;
+    private Hyperlink forgotPassword;
 
-    /**
-     * Initializes the controller class.
-     */
+    private String tempName;
+    private String tempSurname;
+    private String tempEmail;
+    private Image tempImage;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // Load initial user data into temporary variables
+        User user = null;
+        try {
+            user = Acount.getInstance().getLoggedUser();
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(User_dataController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(User_dataController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempName = user.getName();
+        tempSurname = user.getSurname();
+        tempEmail = user.getEmail();
+        tempImage = user.getImage();
 
-    }    
+        // Load data into UI components
+        name.setText(tempName);
+        surname.setText(tempSurname);
+        email.setText(tempEmail);
+        profileImage.setImage(tempImage);
+    }
 
     @FXML
-    private void add_image(ActionEvent event) {
+    private void add_image(ActionEvent event) throws AcountDAOException, IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Selecciona una imagen");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Imagenes", "*.png", "*.jpg"));
         File selectedFile = fileChooser.showOpenDialog(Project2.getStage());
-        //Se establece la imagen tanto en el menu como en el miembro
         if (selectedFile != null) {
             Image image = new Image(selectedFile.toURI().toString());
             profileImage.setImage(image);
-            //Member currentMember = GreenBallApp.getMember();
-            //currentMember.setImage(image);
+            tempImage = image;  // Update temporary image
         }
     }
 
     @FXML
-    private void save(ActionEvent event) {
+    private void save(ActionEvent event){
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
@@ -94,9 +114,14 @@ public class User_dataController implements Initializable {
         confirmationDialog.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
                 try {
+                    User user = Acount.getInstance().getLoggedUser();
+                    user.setName(name.getText());
+                    user.setSurname(surname.getText());
+                    user.setEmail(email.getText());
+                    user.setImage(user.getImage());
+
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
                     Parent root = loader.load();
-
                     Scene scene = new Scene(root);
 
                     currentStage.setScene(scene);
@@ -104,51 +129,65 @@ public class User_dataController implements Initializable {
                     currentStage.show(); 
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
-            } else{
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
-                    Parent root = loader.load();
-
-                    Scene scene = new Scene(root);
-
-                    currentStage.setScene(scene);
-                    currentStage.setTitle("Expenses Manager");
-                    currentStage.show(); 
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (AcountDAOException a){
+                    a.printStackTrace();
                 }
             }
         });
     }
 
     @FXML
-    private void cancel(ActionEvent event) throws IOException{
+    private void cancel(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationDialog.setTitle("Confirmation");
         confirmationDialog.setHeaderText("No changes will be saved.");
-        confirmationDialog.setContentText(" Do you wish to proceed?");
+        confirmationDialog.setContentText("Do you wish to proceed?");
 
         confirmationDialog.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
 
         confirmationDialog.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
+                // Restore original values
+                name.setText(tempName);
+                surname.setText(tempSurname);
+                email.setText(tempEmail);
+                profileImage.setImage(tempImage);
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
+                Parent root = null;
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
-                    Parent root = loader.load();
-
-                    Scene scene = new Scene(root);
-
-                    currentStage.setScene(scene);
-                    currentStage.setTitle("Expenses Manager");
-                    currentStage.show(); 
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    root = loader.load();
+                } catch (IOException ex) {
+                    Logger.getLogger(User_dataController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                Scene scene = new Scene(root);
+
+                currentStage.setScene(scene);
+                currentStage.setTitle("Expenses Manager");
+                currentStage.show(); 
             }
         });
     }
-    
+
+    @FXML
+    private void forgotPassword(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Change_password.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        try {
+            stage.getIcons().add(new Image("/image/logo.png"))  ;
+        }catch (Exception e){
+            System.out.println("Image could not be loaded");
+        }
+        scene.getRoot().requestFocus();
+        stage.setScene(scene);
+        stage.setTitle("Change password");
+        stage.setResizable(false);
+        stage.show();  
+    }   
 }

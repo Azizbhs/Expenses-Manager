@@ -4,6 +4,7 @@
 }
 .btn:hover{
     -fx-background-color: #087070;
+    -fx-cursor: hand;
 }
 
 .signupBor{
@@ -11,4 +12,9 @@
     -fx-border-color:  #088F8F;
     -fx-background-color: transparent;
 }
+
+Button:hover{
+    -fx-cursor: hand;
+}
+
 
