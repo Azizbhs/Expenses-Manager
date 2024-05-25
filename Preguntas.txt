@@ -1,4 +1,0 @@
-- Librerias
-- Pop-up
-- Split Pane no resizable
-- Fechas de los gastos (antes del día de hoy)
