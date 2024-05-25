@@ -32,7 +32,7 @@
                <children>
                   <VBox prefHeight="435.0" prefWidth="296.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Update credentials:">
+                        <Text fx:id="label" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Update credentials:">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -94,7 +94,7 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <Button fx:id="image" mnemonicParsing="false" onAction="#add_image" style="-fx-background-color: #ffffff;" textFill="#d70000">
+                        <Button fx:id="image" mnemonicParsing="false" onAction="#add_image" style="-fx-background-color: transparent;" textFill="#d70000">
                            <graphic>
                               <ImageView fx:id="profileImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

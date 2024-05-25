@@ -4,6 +4,7 @@
 }
 .btn:hover{
     -fx-background-color: #087070;
+    -fx-cursor: hand;
 }
 
 .signupBor{
@@ -12,3 +13,23 @@
     -fx-background-color: transparent;
 }
 
+Button:hover{
+    -fx-cursor: hand;
+}
+
+/*
+.yap {
+    -fx-text-fill: #2ecc71; 
+    -fx-font-size: 20px; 
+    -fx-font-weight: bold; 
+}
+
+
+.tex {
+    -fx-background-color: #ecf0f1;
+    -fx-text-fill: #34495e; 
+    -fx-font-size: 16px; 
+    -fx-padding: 5px; 
+    -fx-prompt-text-fill: #95a5a6; 
+}
+*/

@@ -80,22 +80,18 @@ public class SignUpController implements Initializable {
         return nickname.getText();
     }
 
-    // Method to get text from PasswordField2
     public String getPassword() {
         return password.getText();
     }
 
-    // Method to get text from RepeatPassword
     public String getRepeatPassword() {
         return repeatPassword.getText();
     }
 
-    // Method to get text from RealName
     public String getName() {
         return name.getText();
     }
 
-    // Method to get text from Email
     public String getEmail() {
         return email.getText();
     }    
@@ -122,19 +118,14 @@ public class SignUpController implements Initializable {
     private void signUp(ActionEvent event) throws IOException, AcountDAOException {
         boolean isValid = true;
         boolean success = true;
-        //int cases;
-        //delete only password fields if password incorrect
-        //email format incorrect -> only delete email field
         LocalDate currentDate = LocalDate.now();
-        Image image = new Image("image/edit_Profile.png");
-
+        Image image = new Image("image/add_photo.png");
         if (!isValidEmail(getEmail())) {
             errorLabel.setText("Invalid email address");
             errorLabel.setVisible(true);
             isValid = false;
             email.clear();
             email.requestFocus();
-            //cases = 0;
         } else if (!areEqualPasswords(getPassword(), getRepeatPassword())) {
             errorLabel.setText("Passwords do not match");
             errorLabel.setVisible(true);
@@ -142,7 +133,6 @@ public class SignUpController implements Initializable {
             password.clear();
             repeatPassword.clear();
             password.requestFocus();
-            //cases  = 1;
         } else if (getUserName().equals(getName())) {
             errorLabel.setText("Nickname cannot be equal to your real name");
             errorLabel.setVisible(true);
@@ -187,7 +177,6 @@ public class SignUpController implements Initializable {
             errorLabel.setText("You have been registered!");
             errorLabel.setVisible(true);
 
-            // Create a Timeline to delay closing the window
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), e -> {
                 ((Stage) nickname.getScene().getWindow()).close();
             }));

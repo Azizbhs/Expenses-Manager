@@ -90,7 +90,8 @@
                   <TableView fx:id="categories_table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="413.0" prefWidth="553.0" VBox.vgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="nameCol" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="122.0" resizable="false" text="Name" />
-                        <TableColumn fx:id="descriptionCol" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="430.0" resizable="false" text="Description" />
+                        <TableColumn fx:id="descriptionCol" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="332.0" resizable="false" text="Description" />
+                        <TableColumn fx:id="totalCost" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="85.0" resizable="false" text="Total cost" />
                     </columns>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" top="10.0" />

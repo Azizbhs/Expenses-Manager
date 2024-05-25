@@ -52,7 +52,6 @@ public class Change_passwordController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Inicializa las variables temporales
         tempPassword = "";
         tempRepeatPassword = "";
     }
@@ -70,7 +69,6 @@ public class Change_passwordController implements Initializable {
 
         confirmationDialog.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
-                // Restaura las contraseñas temporales a los campos
                 password.setText(tempPassword);
                 repeatPassword.setText(tempRepeatPassword);
                 currentStage.close();
@@ -91,7 +89,6 @@ public class Change_passwordController implements Initializable {
 
         confirmationDialog.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
-                // Verifica si las contraseñas coinciden
                 if (!password.getText().equals(repeatPassword.getText())) {
                     Alert errorDialog = new Alert(Alert.AlertType.ERROR);
                     errorDialog.setTitle("Error");
@@ -108,7 +105,6 @@ public class Change_passwordController implements Initializable {
                     return;
                 }
 
-                // Actualiza la contraseña real
                 User user = null;
                 try {
                     user = Acount.getInstance().getLoggedUser();
@@ -123,7 +119,6 @@ public class Change_passwordController implements Initializable {
                 message.setText("Password changed \nsuccessfully!");
                 message.setVisible(true);
 
-            // Create a Timeline to delay closing the window
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), e -> {
                     ((Stage) message.getScene().getWindow()).close();
                 }));

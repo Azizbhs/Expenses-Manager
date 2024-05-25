@@ -4,6 +4,7 @@
  */
 package Controllers;
 
+import static Controllers.AddCategoryController.abort;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,23 +14,27 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.Acount;
 import model.AcountDAOException;
+import model.Category;
 
 /**
  * FXML Controller class
  *
  * @author leoda
  */
-public class AddCategoryController implements Initializable {
+public class EditCategoryController implements Initializable {
 
+    @FXML
+    private Text title;
     @FXML
     private TextField name;
     @FXML
@@ -39,14 +44,10 @@ public class AddCategoryController implements Initializable {
     @FXML
     private Button cancel;
     @FXML
-    private Button add1;
+    private Button confirm;
+    
+    private Category category;
 
-    public static boolean abort = true;
-    @FXML
-    private Text title;
-    
-    private boolean editing = false;
-    
     /**
      * Initializes the controller class.
      */
@@ -63,54 +64,45 @@ public class AddCategoryController implements Initializable {
             
         );
 
-        add1.disableProperty().bind(allFieldsFilled.not());
+        confirm.disableProperty().bind(allFieldsFilled.not());
     }    
-
-    @FXML
-    private void add(ActionEvent event) throws AcountDAOException, IOException {
-        boolean good = true;
-        
-        try{
-            Acount.getInstance().registerCategory(name.getText(), description.getText());
-        }
-        catch(Exception e){
-            good = false;
-        }
-        
-        if (!good){
-            name.clear();
-            description.clear();
-            errorLabel.setStyle("-fx-text-fill: red;");
-            errorLabel.setText("Category already exists!");
-            errorLabel.setVisible(true);
-        } else {
-            errorLabel.setStyle("-fx-text-fill: green;");
-            errorLabel.setText("Category created!");
-            errorLabel.setVisible(true);
-            abort = false;
-            // Create a Timeline to delay closing the window
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), e -> {
-                ((Stage) name.getScene().getWindow()).close();
-            }));
-            timeline.play();
-        }
-    }
 
     @FXML
     private void cancel(ActionEvent event) {
         ((Stage) name.getScene().getWindow()).close();
         abort = true;
     }
-    
-    public void changeName(String text){
-        add1.setText(text);
+
+    @FXML
+    private void confirm(ActionEvent event) throws IOException, AcountDAOException {
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/Categories.fxml"));
+        Parent root = miCargador.load();
+        CategoriesController controller = miCargador.getController();
+        errorLabel.setStyle("-fx-text-fill: green;");
+            errorLabel.setText("Category edited!");
+            errorLabel.setVisible(true);
+        category.setName(getCategoryName());
+        category.setDescription(getCategoryDescription());
+        controller.loadUserCategories();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), e -> {
+                ((Stage) name.getScene().getWindow()).close();
+            }));
+            timeline.play();
+        
+        
     }
     
-    public void changeTitle(String text){
-        title.setText(text);
+    public void setCategory(Category category) {
+        this.category = category;
+        name.setText(category.getName());
+        description.setText(category.getDescription());
     }
-    
-    public void setEditing(boolean set){
-        editing = set;
+
+    public String getCategoryName() {
+        return name.getText();
+    }
+
+    public String getCategoryDescription() {
+        return description.getText();
     }
 }

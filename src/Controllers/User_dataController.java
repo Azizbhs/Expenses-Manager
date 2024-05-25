@@ -26,6 +26,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -62,10 +63,14 @@ public class User_dataController implements Initializable {
     private String tempSurname;
     private String tempEmail;
     private Image tempImage;
-
+    private String formerEmail;
+    @FXML
+    private Text label;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Load initial user data into temporary variables
+        
+        
+        formerEmail = email.getText();
         User user = null;
         try {
             user = Acount.getInstance().getLoggedUser();
@@ -74,12 +79,12 @@ public class User_dataController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(User_dataController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        label.setText("Registered date: " + user.getRegisterDate().toString() + "\n" + label.getText());
         tempName = user.getName();
         tempSurname = user.getSurname();
         tempEmail = user.getEmail();
         tempImage = user.getImage();
 
-        // Load data into UI components
         name.setText(tempName);
         surname.setText(tempSurname);
         email.setText(tempEmail);
@@ -99,11 +104,20 @@ public class User_dataController implements Initializable {
             tempImage = image;  // Update temporary image
         }
     }
-
+    
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$";
+        return email.matches(emailRegex);
+    }
+    
+    
+    
     @FXML
     private void save(ActionEvent event){
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        
+        
         Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationDialog.setTitle("Confirmation");
         confirmationDialog.setHeaderText("Save changes?");
@@ -114,19 +128,35 @@ public class User_dataController implements Initializable {
         confirmationDialog.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
                 try {
-                    User user = Acount.getInstance().getLoggedUser();
-                    user.setName(name.getText());
-                    user.setSurname(surname.getText());
-                    user.setEmail(email.getText());
-                    user.setImage(user.getImage());
+                    boolean valid = isValidEmail(email.getText());
+                    
+                    if(!valid){
+                        
+                        Alert warning = new Alert(Alert.AlertType.ERROR);
+                        warning.setTitle("Invalid email format");
+                        warning.setHeaderText("Email introduced not valid!");
+                        warning.setContentText("Introduce right email format");
+                        warning.showAndWait();
+                        email.setText(tempEmail);
+                        email.requestFocus();
+                    }
+                    else{
+                        User user = Acount.getInstance().getLoggedUser();
+                        user.setName(name.getText());
+                        user.setSurname(surname.getText());
+                        user.setEmail(email.getText());
+                        user.setImage(tempImage);
 
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
+                        Parent root = loader.load();
+                        Scene scene = new Scene(root);
 
-                    currentStage.setScene(scene);
-                    currentStage.setTitle("Expenses Manager");
-                    currentStage.show(); 
+                        currentStage.setScene(scene);
+                        currentStage.setTitle("Expenses Manager");
+                        currentStage.show();
+                    }
+                    
+                    
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (AcountDAOException a){
@@ -149,7 +179,6 @@ public class User_dataController implements Initializable {
 
         confirmationDialog.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
-                // Restore original values
                 name.setText(tempName);
                 surname.setText(tempSurname);
                 email.setText(tempEmail);

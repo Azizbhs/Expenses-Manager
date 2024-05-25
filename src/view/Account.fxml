@@ -53,7 +53,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Label>
-                  <Button fx:id="print" mnemonicParsing="false" onAction="#print" style="-fx-background-color: transparent;">
+                  <Button fx:id="print" mnemonicParsing="false" onAction="#print" style="-fx-background-color: transparent;" stylesheets="@styleSheet.css">
                      <graphic>
                         <ImageView fitHeight="53.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -71,7 +71,7 @@
       </GridPane>
    </center>
    <top>
-      <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="79.0" prefWidth="700.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="67.0" prefWidth="700.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="350.0" HBox.hgrow="ALWAYS">
                <children>
@@ -80,14 +80,14 @@
                         <Font size="36.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="35.0" />
                      </VBox.margin>
                   </Text>
                </children>
             </VBox>
             <VBox alignment="CENTER_RIGHT" prefHeight="79.0" prefWidth="350.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="home" alignment="CENTER" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #088f8f;">
+                  <Button fx:id="home" alignment="CENTER" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #088f8f;" stylesheets="@styleSheet.css">
                      <graphic>
                         <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>

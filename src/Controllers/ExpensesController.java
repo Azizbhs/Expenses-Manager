@@ -98,7 +98,6 @@ public class ExpensesController implements Initializable {
         
         ID.setCellValueFactory(new PropertyValueFactory<>("id"));
 
-// Configurar la celda de la columna de ID para mostrar el ID del charge
         ID.setCellFactory(column -> {
             return new TableCell<Charge, Integer>() {
                 @Override
@@ -222,9 +221,7 @@ public class ExpensesController implements Initializable {
                         Logger.getLogger(ExpensesController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    // Get the controller instance from the loader
                     ShowDetailsController controller = loader.getController();
-                    // Set the values on the controller
                     controller.setValues(name, desc, image);
 
                     Stage stage = new Stage();
@@ -266,7 +263,6 @@ public class ExpensesController implements Initializable {
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
         category.setCellValueFactory(new PropertyValueFactory<>("category"));
 
-// Configurar la celda de la columna de categoría para mostrar el nombre de la categoría
         
 
         units.setCellValueFactory(new PropertyValueFactory<>("units"));
@@ -396,7 +392,6 @@ private void edit_expense(ActionEvent event) throws AcountDAOException, IOExcept
             Acount.getInstance().removeCharge(selectedCharge);
         }
 
-        // Recargar la lista de categorías después de editar una
         loadUserExpenses();
 }
 
@@ -419,7 +414,6 @@ private void edit_expense(ActionEvent event) throws AcountDAOException, IOExcept
         }
     }
 
-    // Custom TableCellFactory that uses the CenteredTableCell
     class CenteredTableCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
         @Override
         public TableCell<S, T> call(TableColumn<S, T> param) {

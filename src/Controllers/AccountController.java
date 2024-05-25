@@ -19,6 +19,7 @@ import model.Charge;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Month;
+import java.time.Year;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
@@ -71,61 +73,81 @@ public class AccountController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Configurar el ComboBox para seleccionar el año
         yearSelect.setItems(FXCollections.observableArrayList(
-                2024, 2023, 2022 // Agrega más años según sea necesario
+                2024, 2023, 2022
         ));
 
-        // Configurar el ComboBox para seleccionar el mes
         monthSelect.setItems(FXCollections.observableArrayList(
                 Month.values()
         ));
 
-        // Manejar el evento de selección del ComboBox de año
         yearSelect.setOnAction(event -> updateCharts());
 
-        // Manejar el evento de selección del ComboBox de mes
         monthSelect.setOnAction(event -> updatePieChart());
+        try {
+            populateYearSelect();
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    // Método para actualizar los gráficos cuando se selecciona un año
+    private int getEarliestYear(List<Charge> charges) {
+        return charges.stream()
+                .mapToInt(category -> category.getDate().getYear())
+                .min()
+                .orElse(Year.now().getValue());
+    }
+    
+    private int getLatestYear(List<Charge> charges) {
+        return charges.stream()
+                .mapToInt(category -> category.getDate().getYear())
+                .max()
+                .orElse(Year.now().getValue());
+    }
+    
+    private void populateYearSelect() throws AcountDAOException, IOException {
+        List<Charge> charges = Acount.getInstance().getUserCharges();
+        int earliestYear = getEarliestYear(charges);
+        int latestYear = getLatestYear(charges);
+        int currentYear = Year.now().getValue();
+        
+        List<Integer> years = IntStream.rangeClosed(earliestYear, latestYear)
+                .boxed()
+                .collect(Collectors.toList());
+
+        yearSelect.setItems(FXCollections.observableArrayList(years));
+    }
+    
     private void updateCharts() {
         int selectedYear = yearSelect.getValue();
         updateBarChart(selectedYear);
         updatePieChart();
     }
 
-    // Método para actualizar el gráfico de barras con los gastos mensuales
-    // Método para actualizar el gráfico de barras con los gastos mensuales
     private void updateBarChart(int year) {
-        // Limpiar los datos existentes
         barChart.getData().clear();
 
         try {
-            // Obtener los gastos para el año seleccionado
             List<Charge> charges = Acount.getInstance().getUserCharges().stream()
                     .filter(charge -> charge.getDate().getYear() == year)
                     .collect(Collectors.toList());
 
-            // Agrupar los gastos por mes y calcular el total para cada mes
             Map<Month, Double> monthlyExpenses = charges.stream()
                     .collect(Collectors.groupingBy(charge -> charge.getDate().getMonth(),
                             Collectors.summingDouble(Charge::getCost)));
 
-            // Crear una serie de datos para el gráfico de barras
             XYChart.Series<String, Number> series = new XYChart.Series<>();
             series.setName("Monthly Expenses");
 
-            // Agregar los datos de cada mes a la serie
             for (Month month : Month.values()) {
                 Double total = monthlyExpenses.getOrDefault(month, 0.0);
                 series.getData().add(new XYChart.Data<>(month.toString(), total));
             }
 
-            // Agregar la serie al gráfico de barras
             barChart.getData().add(series);
 
-            // Asignar las etiquetas de los meses como categorías al eje X
             xAxis.setCategories(FXCollections.observableArrayList(
                     Arrays.asList(Month.values()).stream().map(Month::toString).collect(Collectors.toList())
             ));
@@ -136,26 +158,24 @@ public class AccountController implements Initializable {
     }
 
 
-    // Método para actualizar el gráfico de pastel con los gastos del mes seleccionado
     private void updatePieChart() {
-        // Limpiar los datos existentes
+ 
         pieChart.getData().clear();
 
         Month selectedMonth = monthSelect.getValue();
         int selectedYear = yearSelect.getValue();
 
         try {
-            // Obtener los gastos para el mes y año seleccionados
+            
             List<Charge> charges = Acount.getInstance().getUserCharges().stream()
                     .filter(charge -> charge.getDate().getMonth() == selectedMonth && charge.getDate().getYear() == selectedYear)
                     .collect(Collectors.toList());
 
-            // Agrupar los gastos por categoría y calcular el total para cada categoría
             Map<String, Double> categoryExpenses = charges.stream()
     .collect(Collectors.toMap(charge -> charge.getCategory().getName(), Charge::getCost, Double::sum));
 
 
-            // Agregar los datos al gráfico de pastel
+            
             for (Map.Entry<String, Double> entry : categoryExpenses.entrySet()) {
                 pieChart.getData().add(new PieChart.Data(entry.getKey(), entry.getValue()));
             }
